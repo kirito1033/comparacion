@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Comparativa Parques de Diversión</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f2f2f2;
+    }
+    nav {
+      background-color: #053543;
+      padding: 1em;
+      color: white;
+      text-align: center;
+      font-size: 1.2em;
+    }
+    footer {
+      background-color: #053543;
+      color: white;
+      text-align: center;
+      padding: 1em;
+      position: relative;
+      bottom: 0;
+      margin-top: 2em;
+    }
+    main {
+      padding: 1em 2em;
+    }
+    h2 {
+      color: #0a6069;
+    }
+    .chart-container {
+      width: 90%;
+      max-width: 700px;
+      margin: 2em auto;
+      background: white;
+      padding: 1em;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    Comparación de Parques: Salitre Mágico vs Mundo Aventura
+  </nav>
+
+  <main>
+
+    <!-- Gráfica de Barras -->
+    <div class="chart-container">
+      <h2>Precio de Entrada</h2>
+      <p>Comparación del precio de entrada entre ambos parques:</p>
+      <canvas id="barChart"></canvas>
+      <p><strong>Explicación:</strong> Mundo Aventura tiene una entrada más económica ($49.000 COP) en comparación con Salitre Mágico ($55.000 COP), lo que puede atraer a visitantes con presupuesto limitado.</p>
+    </div>
+
+    <!-- Gráfica de Radar -->
+    <div class="chart-container">
+      <h2>Atracciones por Tipo</h2>
+      <p>Distribución de atracciones por categoría:</p>
+      <canvas id="radarChart"></canvas>
+      <p><strong>Explicación:</strong> Salitre Mágico tiene más atracciones en general, destacándose en las familiares. Sin embargo, Mundo Aventura supera en atracciones extremas.</p>
+    </div>
+
+    <!-- Gráfica de Líneas -->
+    <div class="chart-container">
+      <h2>Adrenalina en Atracciones</h2>
+      <p>Comparación de intensidad (1 a 10) en las atracciones de alto impacto:</p>
+      <canvas id="lineChart"></canvas>
+      <p><strong>Explicación:</strong> El Sky Coaster de Salitre Mágico lidera en intensidad con un puntaje de 10, mientras que Mundo Aventura ofrece el Kamikaze (9) y la Venganza del Pirata (8).</p>
+    </div>
+
+    <!-- Gráfica de Pastel -->
+    <div class="chart-container">
+      <h2>Valoración General</h2>
+      <p>Calificación promedio otorgada por los visitantes:</p>
+      <canvas id="pieChart"></canvas>
+      <p><strong>Explicación:</strong> Aunque ambos parques tienen buena aceptación, Salitre Mágico obtiene una calificación ligeramente superior (8.5) frente a Mundo Aventura (8.2).</p>
+    </div>
+    <div class="chart-container">
+        <h2>Conclusión</h2>
+        <p>
+          Tras analizar los datos de ambas opciones, se concluye que <strong>Salitre Mágico</strong> es ideal para quienes buscan una mayor variedad de atracciones, especialmente en el segmento familiar, y una experiencia más intensa en sus juegos de alto impacto como el Sky Coaster.
+        </p>
+        <p>
+          Por otro lado, <strong>Mundo Aventura</strong> representa una excelente alternativa para quienes desean ahorrar algo en el precio de entrada sin sacrificar adrenalina, destacando con atracciones extremas como el Kamikaze y la Venganza del Pirata.
+        </p>
+        <p>
+          En términos generales, si buscas emociones fuertes y estás dispuesto a pagar un poco más, <strong>Salitre Mágico es la mejor opción</strong>. Si prefieres una alternativa más económica con buena oferta extrema, <strong>Mundo Aventura también es una excelente elección</strong>.
+        </p>
+      </div>
+  </main>
+
+  <footer>
+    Proyecto realizado por estudiantes - Comparativa de Parques de Diversión - 2025
+  </footer>
+
+  <script>
+    // Gráfico de barras
+    new Chart(document.getElementById("barChart"), {
+      type: "bar",
+      data: {
+        labels: ["Salitre Mágico", "Mundo Aventura"],
+        datasets: [{
+          label: "Precio Entrada (COP)",
+          data: [55000, 49000],
+          backgroundColor: ["#0a6069", "#048d94"]
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+
+    // Gráfico de radar
+    new Chart(document.getElementById("radarChart"), {
+      type: "radar",
+      data: {
+        labels: ["Infantiles", "Familiares", "Extremas"],
+        datasets: [
+          {
+            label: "Salitre Mágico",
+            data: [8, 12, 5],
+            backgroundColor: "rgba(10, 96, 105, 0.3)",
+            borderColor: "#0a6069",
+          },
+          {
+            label: "Mundo Aventura",
+            data: [7, 10, 6],
+            backgroundColor: "rgba(4, 141, 148, 0.3)",
+            borderColor: "#048d94",
+          }
+        ]
+      },
+      options: {
+        responsive: true
+      }
+    });
+
+    // Gráfico de líneas
+    new Chart(document.getElementById("lineChart"), {
+      type: "line",
+      data: {
+        labels: ["Montaña Rusa", "Sky Coaster", "Kamikaze", "Venganza del Pirata"],
+        datasets: [
+          {
+            label: "Salitre Mágico",
+            data: [9, 10, null, null],
+            borderColor: "#0a6069",
+            backgroundColor: "#0a6069",
+            fill: false
+          },
+          {
+            label: "Mundo Aventura",
+            data: [null, null, 9, 8],
+            borderColor: "#048d94",
+            backgroundColor: "#048d94",
+            fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true, max: 10 }
+        }
+      }
+    });
+
+    // Gráfico de pastel
+    new Chart(document.getElementById("pieChart"), {
+      type: "pie",
+      data: {
+        labels: ["Salitre Mágico", "Mundo Aventura"],
+        datasets: [{
+          label: "Valoración",
+          data: [8.5, 8.2],
+          backgroundColor: ["#0a6069", "#048d94"]
+        }]
+      },
+      options: {
+        responsive: true
+      }
+    });
+  </script>
+</body>
+</html>
